@@ -76,7 +76,7 @@ def absolute_semitone_to_token(
     octave = relative // 12
     semitone_in_octave = relative % 12
     base = SEMITONE_TO_NUMBER[semitone_in_octave]
-    if not keep_octave or octave == 0:
+    if not keep_octave:
         return base
     return f"{base}{octave:+d}"
 
@@ -94,7 +94,7 @@ def translate_numbers(numbers: str, source_key: str, target_key: str) -> str:
     return " ".join(translated)
 
 
-def translate_to_all_keys(numbers: str, source_key: str):
+def translate_to_all_keys(numbers: str, source_key: str) -> dict[str, str]:
     src = normalize_key(source_key)
     return {key: translate_numbers(numbers, src, key) for key in KEYS}
 

@@ -10,6 +10,9 @@ class AngklungTranslatorTest(unittest.TestCase):
     def test_translate_with_rest_and_octave(self):
         self.assertEqual(translate_numbers("1+1 0 b7-1", "C", "C"), "1+1 0 b7-1")
 
+    def test_translate_preserves_explicit_zero_octave(self):
+        self.assertEqual(translate_numbers("1+0", "C", "C"), "1+0")
+
     def test_translate_to_all_keys_has_12_results(self):
         result = translate_to_all_keys("1 2 3", "C")
         self.assertEqual(len(result), 12)
